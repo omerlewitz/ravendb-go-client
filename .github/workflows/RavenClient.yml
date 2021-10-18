@@ -1,0 +1,33 @@
+name: build-test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  run:
+    name: Run
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ windows-latest ]
+        go: [ 1.12, 1.13, 1.14 ]
+
+    steps:
+      - name: Run tests
+        run: go test -tags="for_tests" ./tests
+        if: matrix.operating-system == 'windows-latest'
+#
+#      - name: npm install
+#        run: npm install
+#
+#      - name: Run dive into raven tests
+#        run: go test -v -c ./dive-into-raven
+#
+#      - name: Run example tests
+#        run: go test -v -c ./examples
+
+
+
