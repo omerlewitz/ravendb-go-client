@@ -1,0 +1,20 @@
+name: build-test
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 10 * * 6'
+
+jobs:
+  run:
+    name: Run
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest, windows-latest ]
+    steps:
+      - name: audit package
+        run: npm audit --audit-level=high
+        if: matrix.operating-system == 'windows-latest'
