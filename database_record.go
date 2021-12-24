@@ -6,6 +6,7 @@ type DatabaseRecord struct {
 	Disabled             bool              `json:"Disabled"`
 	DataDirectory        string            `json:"DataDirectory,omitempty"`
 	Settings             map[string]string `json:"Settings"`
+	Encrypted            bool              `json:"Encrypted"`
 	ConflictSolverConfig *ConflictSolver   `json:"ConflictSolverConfig"`
 }
 
